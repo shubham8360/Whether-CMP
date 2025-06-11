@@ -5,6 +5,8 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -102,10 +104,13 @@ fun WeatherLoadedScreen(currentWhether: Whether) {
         Row(
             modifier = Modifier
                 .fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceBetween
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
         ) {
             DailyItem(
-                Res.drawable.temprature, currentWhether.current.temperature2m.toString(), "Feels Like"
+                Res.drawable.temprature,
+                currentWhether.current.temperature2m.toString(),
+                "Feels Like"
             )
             DailyItem(
                 Res.drawable.visibility, currentWhether.current.visibility.toString(), "Visibility"
@@ -116,14 +121,19 @@ fun WeatherLoadedScreen(currentWhether: Whether) {
         }
         Spacer(modifier = Modifier.size(20.dp))
         Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceBetween
+            modifier = Modifier.fillMaxWidth().height(120.dp),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
         ) {
             DailyItem(
-                Res.drawable.humidity, currentWhether.current.relativeHumidity2m.toString(), "Humidity"
+                Res.drawable.humidity,
+                currentWhether.current.relativeHumidity2m.toString(),
+                "Humidity"
             )
             DailyItem(
-                Res.drawable.wind_speed, currentWhether.current.windSpeed10m.toString(), "Wind Speed"
+                Res.drawable.wind_speed,
+                currentWhether.current.windSpeed10m.toString(),
+                "Wind Speed"
             )
             DailyItem(
                 Res.drawable.pressure, currentWhether.current.pressureMsl.toString(), "Air Pressure"
@@ -137,7 +147,7 @@ fun WeatherLoadedScreen(currentWhether: Whether) {
             .padding(start = 20.dp, end = 20.dp)
     ) {
 
-        itemsIndexed (items = currentWhether.daily.time){position,time->
+        itemsIndexed(items = currentWhether.daily.time) { position, time ->
 
             Column {
                 Card(
@@ -147,7 +157,7 @@ fun WeatherLoadedScreen(currentWhether: Whether) {
                     shape = RoundedCornerShape(CornerSize(15.dp)),
                 ) {
                     Row(
-                        modifier = Modifier.fillMaxWidth(),
+                        modifier = Modifier.fillMaxSize(),
                         horizontalArrangement = Arrangement.Center,
                         verticalAlignment = Alignment.CenterVertically
                     ) {
@@ -164,7 +174,7 @@ fun WeatherLoadedScreen(currentWhether: Whether) {
                                 .padding(start = 15.dp) // Added some padding for separation
                         )
 
-                        val whetherCode=currentWhether.daily.weatherCode[position]
+                        val whetherCode = currentWhether.daily.weatherCode[position]
                         Image(
                             modifier = Modifier
                                 .weight(1f)
@@ -173,8 +183,8 @@ fun WeatherLoadedScreen(currentWhether: Whether) {
                             contentScale = ContentScale.Fit,
                             contentDescription = "",
                         )
-                        val maxTemp=currentWhether.daily.temperature2mMax[position]
-                        val minTemp=currentWhether.daily.temperature2mMin[position]
+                        val maxTemp = currentWhether.daily.temperature2mMax[position]
+                        val minTemp = currentWhether.daily.temperature2mMin[position]
                         Row(
                             modifier = Modifier
                                 .weight(1f),
@@ -205,8 +215,12 @@ fun DailyItem(icDay: DrawableResource, data: String, stringText: String) {
         modifier = Modifier.size(100.dp),
         shape = RoundedCornerShape(15.dp),
 
-    ) {
-        Column(modifier = Modifier, verticalArrangement = Arrangement.Center) {
+        ) {
+        Column(
+            modifier = Modifier.fillMaxSize(),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
             Icon(
                 painter = painterResource(icDay),
                 contentDescription = stringResource(Res.string.day_temp),

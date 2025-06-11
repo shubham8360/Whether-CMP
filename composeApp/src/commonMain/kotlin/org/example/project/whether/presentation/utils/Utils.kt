@@ -4,7 +4,12 @@ import org.jetbrains.compose.resources.DrawableResource
 import whethercmp.composeapp.generated.resources.Res
 import whethercmp.composeapp.generated.resources.broken_clouds
 import whethercmp.composeapp.generated.resources.clear_sky
+import whethercmp.composeapp.generated.resources.drizzle
 import whethercmp.composeapp.generated.resources.few_clouds
+import whethercmp.composeapp.generated.resources.freezing_drizzle
+import whethercmp.composeapp.generated.resources.freezing_rain
+import whethercmp.composeapp.generated.resources.mist
+import whethercmp.composeapp.generated.resources.overcast
 import whethercmp.composeapp.generated.resources.rain
 import whethercmp.composeapp.generated.resources.scattered_clouds
 import whethercmp.composeapp.generated.resources.shower_rain
@@ -16,28 +21,28 @@ fun resolveWhetherAppIcon(code: Int): DrawableResource {
         0-> Res.drawable.clear_sky  //clear sky
         1-> Res.drawable.clear_sky  //mainly clear
         2-> Res.drawable.few_clouds  //partly cloudy
-        3-> Res.drawable.broken_clouds  //overcast
-        45-> Res.drawable.scattered_clouds  //fog
-        48-> Res.drawable.few_clouds  //depositing rime fog
-        51-> Res.drawable.rain  //drizzle
-        53-> Res.drawable.rain  //drizzle
-        55-> Res.drawable.rain  //drizzle
-        56-> Res.drawable.rain  //freezing drizzle
-        57-> Res.drawable.rain  //freezing drizzle
+        3-> Res.drawable.overcast  //overcast
+        45-> Res.drawable.mist  //fog
+        48-> Res.drawable.mist  //depositing rime fog
+        51-> Res.drawable.drizzle  //drizzle
+        53-> Res.drawable.drizzle  //drizzle
+        55-> Res.drawable.drizzle  //drizzle
+        56-> Res.drawable.freezing_drizzle  //freezing drizzle
+        57-> Res.drawable.freezing_drizzle  //freezing drizzle
         61-> Res.drawable.rain  //rain
         63-> Res.drawable.rain  //rain
         65-> Res.drawable.rain  //rain
-        66-> Res.drawable.shower_rain  //freezing rain
-        67-> Res.drawable.rain //freezing rain
+        66-> Res.drawable.freezing_rain  //freezing rain
+        67-> Res.drawable.freezing_rain //freezing rain
         71-> Res.drawable.snow  //snow
         73-> Res.drawable.snow  //snow
         75-> Res.drawable.snow  //snow
         77-> Res.drawable.snow  //snow
-        80-> Res.drawable.rain  //rain showers
-        81-> Res.drawable.rain  //rain showers
-        82-> Res.drawable.rain  //rain showers
-        85-> Res.drawable.snow  //snow showers
-        86-> Res.drawable.snow  //snow showers
+        80-> Res.drawable.shower_rain  //rain showers
+        81-> Res.drawable.shower_rain  //rain showers
+        82-> Res.drawable.shower_rain  //rain showers
+        85-> Res.drawable.shower_rain  //snow showers
+        86-> Res.drawable.shower_rain  //snow showers
         95-> Res.drawable.thunderstorm  //thunderstorm
         96-> Res.drawable.thunderstorm  //thunderstorm
         99-> Res.drawable.thunderstorm  //thunderstorm
