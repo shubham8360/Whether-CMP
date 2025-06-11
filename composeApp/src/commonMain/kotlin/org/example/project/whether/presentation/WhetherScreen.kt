@@ -5,14 +5,19 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import org.example.project.whether.presentation.utils.WeatherScreenContent
 import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
-fun WhetherScreenRoot(modifier: Modifier = Modifier, viewModel: WhetherScreenVm = koinViewModel()) {
+fun WhetherScreenRoot(modifier: Modifier = Modifier, canSubscribeForLocation:Boolean,viewModel: WhetherScreenVm = koinViewModel()) {
+    if (canSubscribeForLocation){
+        viewModel.locationUpdates.collectAsStateWithLifecycle()
+    }
     val state = viewModel.whetherState.collectAsState()
     WhetherScreen(modifier = modifier, state = state.value)
 }

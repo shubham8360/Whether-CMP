@@ -46,7 +46,7 @@ class MainActivity : ComponentActivity() {
                     Log.d(TAG, "onCreate: Location Permission")
                 }
             }
-            App()
+            App(locationPermissionState.allPermissionsGranted)
         }
     }
 }

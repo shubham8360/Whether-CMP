@@ -19,12 +19,12 @@ import whethercmp.composeapp.generated.resources.app_name
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 @Preview
-fun App() {
+fun App(canSubscribeForLocation:Boolean=false) {
     MaterialTheme {
         Scaffold(modifier = Modifier, topBar = {
             WhetherAppBar()
         }) {innerPadding->
-            WhetherScreenRoot(modifier = Modifier.fillMaxSize().padding(innerPadding))
+            WhetherScreenRoot(modifier = Modifier.fillMaxSize().padding(innerPadding),canSubscribeForLocation)
         }
     }
 }

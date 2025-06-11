@@ -16,16 +16,21 @@ class KtorRemoteDataSource(private val client: HttpClient) : RemoteDataSource {
     override suspend fun fetchWhetherUpdates(map: Map<String, Any>): Result<WhetherDto, DataError.Remote> {
         return safeCall<WhetherDto> {
             client.get("$BASE_URL/forecast") {
-                map.forEach { (key, value) ->
-                    parameter(key, value)
+                //if initally location fetching takes time
+                if (map.isEmpty()){
+                    parameter("latitude", 32.2748)
+                    parameter("longitude", 75.6529)
+                }else{
+                    map.forEach { (key, value) ->
+                        parameter(key, value)
+                    }
                 }
-                parameter("latitude", 32.2748)
-                parameter("longitude", 75.6529)
                 parameter(
                     "current",
                     "temperature_2m,relative_humidity_2m,weather_code,wind_speed_10m,visibility,pressure_msl,is_day,shortwave_radiation"
                 )
                 parameter("daily", "weather_code,temperature_2m_max,temperature_2m_min")
+
             }
         }
     }
