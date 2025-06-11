@@ -8,6 +8,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import org.example.project.whether.presentation.utils.WeatherLoadedScreen
 import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
@@ -30,7 +31,7 @@ private fun WhetherScreen(modifier: Modifier = Modifier, state: WhetherState) {
             }
 
             is WhetherState.Success -> {
-                Text(text = state.whether.current.temperature2m.toString())
+                WeatherLoadedScreen(state.whether)
             }
         }
 
