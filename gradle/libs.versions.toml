@@ -9,6 +9,7 @@ androidx-appcompat = "1.7.0"
 androidx-constraintlayout = "2.2.1"
 androidx-core-ktx = "1.15.0"
 androidx-espresso-core = "3.6.1"
+googleServices="4.4.2"
 androidx-lifecycle = "2.8.4"
 androidx-material = "1.12.0"
 androidx-test-junit = "1.2.1"
@@ -23,6 +24,7 @@ koin = "4.0.0"
 ktor = "3.0.0"
 coil3 = "3.0.0-rc02"
 ksp = "2.1.0-1.0.29"
+playServicesLocation = "21.3.0"
 sqlite = "2.5.0-rc01"
 room = "2.7.0-rc01"
 
@@ -69,11 +71,13 @@ coil-mp = { module = "io.coil-kt.coil3:coil", version.ref = "coil3" }
 
 androidx-room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
 androidx-room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room" }
+play-services-location = { module = "com.google.android.gms:play-services-location", version.ref = "playServicesLocation" }
 sqlite-bundled = { module = "androidx.sqlite:sqlite-bundled", version.ref = "sqlite" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
 androidLibrary = { id = "com.android.library", version.ref = "agp" }
+google-services={id="com.google.gms.google-services", version.ref="googleServices"}
 composeMultiplatform = { id = "org.jetbrains.compose", version.ref = "compose-multiplatform" }
 composeCompiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }

@@ -11,6 +11,8 @@ plugins {
     alias(libs.plugins.jetbrains.kotlin.serialization)
     alias(libs.plugins.ksp)
     alias(libs.plugins.room)
+    alias(libs.plugins.google.services)
+
 }
 
 kotlin {
@@ -19,7 +21,9 @@ kotlin {
         compilerOptions {
             jvmTarget.set(JvmTarget.JVM_11)
         }
+
     }
+
     
     listOf(
         iosX64(),
@@ -36,7 +40,6 @@ kotlin {
         schemaDirectory("$projectDir/schemas")
     }
 
-
     sourceSets {
         
         androidMain.dependencies {
@@ -46,6 +49,8 @@ kotlin {
             implementation(libs.koin.android)
             implementation(libs.koin.androidx.compose)
             implementation(libs.ktor.client.okhttp)
+            implementation(libs.play.services.location)
+
         }
         commonMain.dependencies {
             implementation(compose.runtime)

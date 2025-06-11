@@ -3,6 +3,8 @@ package org.example.utils
 import android.Manifest
 import android.content.Context
 import android.content.pm.PackageManager
+import android.location.LocationManager
+import android.os.Build
 import android.util.Log
 
 object PermissionUtils {
@@ -25,5 +27,12 @@ object PermissionUtils {
             }
         }
         return true
+    }
+
+    fun Context.isGpsEnabled(): Boolean {
+        val locationManger = getSystemService(LocationManager::class.java)
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            locationManger.isLocationEnabled
+        } else locationManger.isProviderEnabled(LocationManager.GPS_PROVIDER)
     }
 }
