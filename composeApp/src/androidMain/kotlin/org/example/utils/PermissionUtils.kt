@@ -1,0 +1,29 @@
+package org.example.utils
+
+import android.Manifest
+import android.content.Context
+import android.content.pm.PackageManager
+import android.util.Log
+
+object PermissionUtils {
+    private const val TAG = "PermissionUtils"
+
+    val locationPermission=arrayOf(
+        Manifest.permission.ACCESS_FINE_LOCATION,
+        Manifest.permission.ACCESS_COARSE_LOCATION
+    )
+
+    fun Context.hasPermission(permission: String): Boolean {
+        Log.d(TAG, "hasPermission: permission checked $permission")
+       return checkSelfPermission(permission)== PackageManager.PERMISSION_GRANTED
+    }
+
+    fun Context.hasPermissions(permissions: Array<String>): Boolean {
+        for (permission in permissions) {
+            if (!hasPermission(permission)) {
+                return false
+            }
+        }
+        return true
+    }
+}
