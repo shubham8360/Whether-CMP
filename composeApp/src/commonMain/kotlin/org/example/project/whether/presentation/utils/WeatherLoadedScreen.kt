@@ -28,7 +28,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import io.ktor.sse.SPACE
 import org.example.project.whether.domain.models.Whether
 import org.example.project.whether.presentation.ui.textColor
 import org.jetbrains.compose.resources.DrawableResource
@@ -134,7 +133,7 @@ fun WeatherScreenContent(currentWhether: Whether) {
                 stringResource(Res.string.visibility)
             )
             DailyItem(
-                Res.drawable.uv_rays, "NA", "", stringResource(Res.string.uv_rays)
+                Res.drawable.uv_rays, currentWhether.current.shortwaveRadiation.toString(), currentWhether.currentUnits.shortwaveRadiation, stringResource(Res.string.uv_rays)
             )
         } }
 

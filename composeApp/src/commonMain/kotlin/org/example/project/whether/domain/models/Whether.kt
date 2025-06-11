@@ -8,6 +8,7 @@ import kotlinx.datetime.format.DayOfWeekNames
 import kotlinx.datetime.format.MonthNames
 import kotlinx.datetime.format.Padding
 import kotlinx.datetime.format.char
+import kotlinx.datetime.toInstant
 import kotlinx.datetime.toLocalDateTime
 
 /**
@@ -24,8 +25,9 @@ val timeFormatter = LocalDateTime.Format {
     char(':')
     minute(padding = Padding.ZERO)
     char(' ')
-    amPmMarker("AM","PM")
+    amPmMarker("AM", "PM")
 }
+
 data class Whether(
     val current: Current,
     val currentUnits: CurrentUnits,
@@ -38,14 +40,18 @@ data class Whether(
     val timezone: String,
     val timezoneAbbreviation: String,
     val utcOffsetSeconds: Int,
-    val parsedDate: LocalDateTime = runCatching { LocalDateTime.parse(current.time) }.getOrNull()
+    val parsedDate: LocalDateTime = runCatching {
+        LocalDateTime.parse(current.time).toInstant(
+            TimeZone.UTC
+        ).toLocalDateTime(TimeZone.currentSystemDefault())
+    }.getOrNull()
         ?: Clock.System.now().toLocalDateTime(
             TimeZone.UTC
         ),
     val formattedDateTime: String = runCatching {
         parsedDate.format(dateMonthFormatter)
     }.getOrNull() ?: "",
-    val formatterTime: String= runCatching {
+    val formatterTime: String = runCatching {
         parsedDate.format(timeFormatter)
-    }.getOrNull()?:""
+    }.getOrNull() ?: ""
 )

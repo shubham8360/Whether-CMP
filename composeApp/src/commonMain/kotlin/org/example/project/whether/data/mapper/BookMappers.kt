@@ -27,11 +27,22 @@ fun WhetherDto.toModel(): Whether {
         timezoneAbbreviation,
         utcOffsetSeconds,
 
-    )
+        )
 }
 
 fun CurrentUnitsDto.toModel(): CurrentUnits {
-    return CurrentUnits(interval, isDay, pressureMsl, relativeHumidity2m, temperature2m, time, visibility, weatherCode, windSpeed10m)
+    return CurrentUnits(
+        interval,
+        isDay,
+        pressureMsl,
+        relativeHumidity2m,
+        temperature2m,
+        time,
+        visibility,
+        weatherCode,
+        windSpeed10m,
+        shortwaveRadiation
+    )
 }
 
 fun CurrentDto.toModel(): Current {
@@ -44,13 +55,15 @@ fun CurrentDto.toModel(): Current {
         time,
         visibility,
         weatherCode,
-        windSpeed10m
+        windSpeed10m,
+        shortwaveRadiation
     )
 }
 
 fun DailyUnitsDto.toModel(): DailyUnits {
     return DailyUnits(temperature2mMax, temperature2mMin, time, weatherCode)
 }
+
 fun DailyDto.toModel(): Daily {
     return Daily(temperature2mMax, temperature2mMin, time.map { Time(it) }, weatherCode)
 }

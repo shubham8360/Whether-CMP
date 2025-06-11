@@ -10,5 +10,6 @@ data class Current(
      val time: String,
      val visibility: Double,
      val weatherCode: Int,
-     val windSpeed10m: Double
+     val windSpeed10m: Double,
+     val shortwaveRadiation: Double,
 )

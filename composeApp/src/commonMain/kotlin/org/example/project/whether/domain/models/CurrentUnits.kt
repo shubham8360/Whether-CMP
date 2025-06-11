@@ -1,7 +1,6 @@
 package org.example.project.whether.domain.models
 
 
-
 data class CurrentUnits(
     val interval: String,
     val isDay: String,
@@ -11,5 +10,6 @@ data class CurrentUnits(
     val time: String,
     val visibility: String,
     val weatherCode: String,
-    val windSpeed10m: String
+    val windSpeed10m: String,
+    val shortwaveRadiation: String,
 )

@@ -14,5 +14,6 @@ data class CurrentDto(
     @SerialName("time") val time: String,
     @SerialName("visibility") val visibility: Double,
     @SerialName("weather_code") val weatherCode: Int,
-    @SerialName("wind_speed_10m") val windSpeed10m: Double
+    @SerialName("wind_speed_10m") val windSpeed10m: Double,
+    @SerialName("shortwave_radiation") val shortwaveRadiation: Double
 )

@@ -23,7 +23,7 @@ class KtorRemoteDataSource(private val client: HttpClient) : RemoteDataSource {
                 parameter("longitude", 75.6529)
                 parameter(
                     "current",
-                    "temperature_2m,relative_humidity_2m,weather_code,wind_speed_10m,visibility,pressure_msl,is_day"
+                    "temperature_2m,relative_humidity_2m,weather_code,wind_speed_10m,visibility,pressure_msl,is_day,shortwave_radiation"
                 )
                 parameter("daily", "weather_code,temperature_2m_max,temperature_2m_min")
             }
