@@ -1,4 +1,4 @@
-package org.example.project.whether.dto
+package org.example.project.whether.data.dto
 
 
 import kotlinx.serialization.SerialName
