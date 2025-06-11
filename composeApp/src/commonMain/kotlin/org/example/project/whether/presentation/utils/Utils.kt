@@ -2,7 +2,6 @@ package org.example.project.whether.presentation.utils
 
 import org.jetbrains.compose.resources.DrawableResource
 import whethercmp.composeapp.generated.resources.Res
-import whethercmp.composeapp.generated.resources.broken_clouds
 import whethercmp.composeapp.generated.resources.clear_sky
 import whethercmp.composeapp.generated.resources.drizzle
 import whethercmp.composeapp.generated.resources.few_clouds
@@ -10,8 +9,6 @@ import whethercmp.composeapp.generated.resources.freezing_drizzle
 import whethercmp.composeapp.generated.resources.freezing_rain
 import whethercmp.composeapp.generated.resources.mist
 import whethercmp.composeapp.generated.resources.overcast
-import whethercmp.composeapp.generated.resources.rain
-import whethercmp.composeapp.generated.resources.scattered_clouds
 import whethercmp.composeapp.generated.resources.shower_rain
 import whethercmp.composeapp.generated.resources.snow
 import whethercmp.composeapp.generated.resources.thunderstorm
@@ -29,9 +26,9 @@ fun resolveWhetherAppIcon(code: Int): DrawableResource {
         55-> Res.drawable.drizzle  //drizzle
         56-> Res.drawable.freezing_drizzle  //freezing drizzle
         57-> Res.drawable.freezing_drizzle  //freezing drizzle
-        61-> Res.drawable.rain  //rain
-        63-> Res.drawable.rain  //rain
-        65-> Res.drawable.rain  //rain
+        61-> Res.drawable.shower_rain  //rain
+        63-> Res.drawable.shower_rain  //rain
+        65-> Res.drawable.shower_rain  //rain
         66-> Res.drawable.freezing_rain  //freezing rain
         67-> Res.drawable.freezing_rain //freezing rain
         71-> Res.drawable.snow  //snow

@@ -9,6 +9,7 @@ import org.example.project.whether.domain.models.Current
 import org.example.project.whether.domain.models.CurrentUnits
 import org.example.project.whether.domain.models.Daily
 import org.example.project.whether.domain.models.DailyUnits
+import org.example.project.whether.domain.models.Time
 import org.example.project.whether.domain.models.Whether
 
 
@@ -24,7 +25,8 @@ fun WhetherDto.toModel(): Whether {
         longitude,
         timezone,
         timezoneAbbreviation,
-        utcOffsetSeconds
+        utcOffsetSeconds,
+
     )
 }
 
@@ -50,5 +52,5 @@ fun DailyUnitsDto.toModel(): DailyUnits {
     return DailyUnits(temperature2mMax, temperature2mMin, time, weatherCode)
 }
 fun DailyDto.toModel(): Daily {
-    return Daily(temperature2mMax, temperature2mMin, time, weatherCode)
+    return Daily(temperature2mMax, temperature2mMin, time.map { Time(it) }, weatherCode)
 }

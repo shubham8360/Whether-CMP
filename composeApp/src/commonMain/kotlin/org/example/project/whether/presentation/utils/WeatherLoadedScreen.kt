@@ -1,20 +1,19 @@
 package org.example.project.whether.presentation.utils
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.gestures.rememberScrollableState
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.aspectRatio
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.CornerSize
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
@@ -29,13 +28,16 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import io.ktor.sse.SPACE
 import org.example.project.whether.domain.models.Whether
 import org.example.project.whether.presentation.ui.textColor
 import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 import whethercmp.composeapp.generated.resources.Res
+import whethercmp.composeapp.generated.resources.air_pressure
 import whethercmp.composeapp.generated.resources.day_temp
+import whethercmp.composeapp.generated.resources.feels_like
 import whethercmp.composeapp.generated.resources.humidity
 import whethercmp.composeapp.generated.resources.pressure
 import whethercmp.composeapp.generated.resources.temprature
@@ -43,65 +45,78 @@ import whethercmp.composeapp.generated.resources.uv_rays
 import whethercmp.composeapp.generated.resources.visibility
 import whethercmp.composeapp.generated.resources.wind_speed
 
+
 @Composable
-fun WeatherLoadedScreen(currentWhether: Whether) {
-    Spacer(modifier = Modifier.size(10.dp))
-    Text(
-        text = "City Name",
-        modifier = Modifier.padding(start = 20.dp),
-        style = TextStyle(fontWeight = FontWeight.Bold, fontSize = 20.sp, color = textColor)
-    )
-    Text(
-        text = currentWhether.current.time,
-        modifier = Modifier.padding(start = 20.dp),
-        style = TextStyle(fontSize = 16.sp, color = textColor)
-    )
-    Row(
+fun WeatherScreenContent(currentWhether: Whether) {
+    val state= rememberLazyListState()
+    LazyColumn(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(10.dp),
-        horizontalArrangement = Arrangement.Center,
+            .padding(start = 20.dp, end = 20.dp),
+        verticalArrangement = Arrangement.spacedBy(10.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        state =state
     ) {
-        Card(
-            modifier = Modifier.size(80.dp).align(Alignment.CenterVertically),
-            shape = RoundedCornerShape(40.dp),
-        ) {
-            Image(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(12.dp),
-                painter = painterResource(resolveWhetherAppIcon(currentWhether.current.weatherCode)),
-                contentScale = ContentScale.Crop,
-                contentDescription = "",
+        item {
+            Text(
+                text = currentWhether.formattedDateTime,
+                modifier = Modifier.padding(start = 20.dp),
+                style = TextStyle(fontWeight = FontWeight.Bold, fontSize = 20.sp, color = textColor)
             )
         }
-        Text(
-            text = currentWhether.current.temperature2m.toString(),
-            modifier = Modifier.padding(start = 10.dp),
-            style = TextStyle(
-                fontWeight = FontWeight.Bold, fontSize = 70.sp, color = textColor
+        item {
+            Text(
+                text = currentWhether.formatterTime,
+                modifier = Modifier.padding(start = 20.dp),
+                style = TextStyle(fontSize = 16.sp, color = textColor)
             )
-        )
-        Text(
-            text = "°C",
-            modifier = Modifier.padding(top = 20.dp),
-            style = TextStyle(
-                fontWeight = FontWeight.Bold, fontSize = 22.sp, color = textColor
-            )
-        )
-        Text(
-            text = resolveWhetherDescription(currentWhether.current.weatherCode),
-            modifier = Modifier
-                .padding(start = 20.dp)
-                .align(Alignment.CenterVertically),
-            style = TextStyle(
-                fontWeight = FontWeight.Bold, fontSize = 25.sp, color = textColor,
-            )
-        )
-    }
-    Spacer(modifier = Modifier.size(15.dp))
-    Column(modifier = Modifier.padding(start = 20.dp, end = 20.dp)) {
-        Row(
+        }
+        item {
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(10.dp),
+                horizontalArrangement = Arrangement.Center,
+            ) {
+                Card(
+                    modifier = Modifier.size(80.dp).align(Alignment.CenterVertically),
+                    shape = RoundedCornerShape(40.dp),
+                ) {
+                    Image(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .padding(12.dp),
+                        painter = painterResource(resolveWhetherAppIcon(currentWhether.current.weatherCode)),
+                        contentScale = ContentScale.Crop,
+                        contentDescription = "",
+                    )
+                }
+                Text(
+                    text = currentWhether.current.temperature2m.toString(),
+                    modifier = Modifier.padding(start = 10.dp),
+                    style = TextStyle(
+                        fontWeight = FontWeight.Bold, fontSize = 70.sp, color = textColor
+                    )
+                )
+                Text(
+                    text = currentWhether.currentUnits.temperature2m,
+                    modifier = Modifier.padding(top = 20.dp),
+                    style = TextStyle(
+                        fontWeight = FontWeight.Bold, fontSize = 22.sp, color = textColor
+                    )
+                )
+                Text(
+                    text = resolveWhetherDescription(currentWhether.current.weatherCode),
+                    modifier = Modifier
+                        .padding(start = 20.dp)
+                        .align(Alignment.CenterVertically),
+                    style = TextStyle(
+                        fontWeight = FontWeight.Bold, fontSize = 25.sp, color = textColor,
+                    )
+                )
+            }
+        }
+        item {   Row(
             modifier = Modifier
                 .fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween,
@@ -110,43 +125,45 @@ fun WeatherLoadedScreen(currentWhether: Whether) {
             DailyItem(
                 Res.drawable.temprature,
                 currentWhether.current.temperature2m.toString(),
-                "Feels Like"
+                currentWhether.currentUnits.temperature2m,stringResource(Res.string.feels_like),
             )
             DailyItem(
-                Res.drawable.visibility, currentWhether.current.visibility.toString(), "Visibility"
+                Res.drawable.visibility,
+                currentWhether.current.visibility.toString(),
+                currentWhether.currentUnits.visibility,
+                stringResource(Res.string.visibility)
             )
             DailyItem(
-                Res.drawable.uv_rays, "NA", "UV Rays"
+                Res.drawable.uv_rays, "NA", "", stringResource(Res.string.uv_rays)
             )
-        }
-        Spacer(modifier = Modifier.size(20.dp))
-        Row(
-            modifier = Modifier.fillMaxWidth().height(120.dp),
-            horizontalArrangement = Arrangement.SpaceBetween,
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            DailyItem(
-                Res.drawable.humidity,
-                currentWhether.current.relativeHumidity2m.toString(),
-                "Humidity"
-            )
-            DailyItem(
-                Res.drawable.wind_speed,
-                currentWhether.current.windSpeed10m.toString(),
-                "Wind Speed"
-            )
-            DailyItem(
-                Res.drawable.pressure, currentWhether.current.pressureMsl.toString(), "Air Pressure"
-            )
-        }
-    }
-    Spacer(modifier = Modifier.size(25.dp))
-    LazyColumn(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(start = 20.dp, end = 20.dp)
-    ) {
+        } }
 
+        item {
+            Row(
+                modifier = Modifier.fillMaxWidth().height(120.dp),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                DailyItem(
+                    Res.drawable.humidity,
+                    currentWhether.current.relativeHumidity2m.toString(),
+                    currentWhether.currentUnits.relativeHumidity2m,
+                    stringResource(Res.string.humidity)
+                )
+                DailyItem(
+                    Res.drawable.wind_speed,
+                    currentWhether.current.windSpeed10m.toString(),
+                    currentWhether.currentUnits.windSpeed10m,stringResource(Res.string.wind_speed)
+
+                )
+                DailyItem(
+                    Res.drawable.pressure,
+                    currentWhether.current.pressureMsl.toString(),
+                    currentWhether.currentUnits.pressureMsl,stringResource(Res.string.air_pressure)
+
+                )
+            }
+        }
         itemsIndexed(items = currentWhether.daily.time) { position, time ->
 
             Column {
@@ -162,7 +179,7 @@ fun WeatherLoadedScreen(currentWhether: Whether) {
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         Text(
-                            text = time,
+                            text = time.formattedTime,
                             style = TextStyle(
                                 textAlign = TextAlign.Start,
                                 fontWeight = FontWeight.Medium,
@@ -210,7 +227,7 @@ fun WeatherLoadedScreen(currentWhether: Whether) {
 }
 
 @Composable
-fun DailyItem(icDay: DrawableResource, data: String, stringText: String) {
+fun DailyItem(icDay: DrawableResource, value: String, units: String, stringText: String) {
     Card(
         modifier = Modifier.size(100.dp),
         shape = RoundedCornerShape(15.dp),
@@ -230,7 +247,11 @@ fun DailyItem(icDay: DrawableResource, data: String, stringText: String) {
             )
             Spacer(modifier = Modifier.size(5.dp))
             Text(
-                text = data,
+                text = buildString {
+                    append(value)
+                    append(" ")
+                    append(units)
+                },
                 style = TextStyle(fontSize = 16.sp, color = textColor),
                 modifier = Modifier
                     .align(Alignment.CenterHorizontally)

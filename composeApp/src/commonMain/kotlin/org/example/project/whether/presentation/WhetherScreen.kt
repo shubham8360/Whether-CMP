@@ -8,7 +8,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import org.example.project.whether.presentation.utils.WeatherLoadedScreen
+import org.example.project.whether.presentation.utils.WeatherScreenContent
 import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
@@ -25,13 +25,15 @@ private fun WhetherScreen(modifier: Modifier = Modifier, state: WhetherState) {
         verticalArrangement = Arrangement.Center
     ) {
         when (state) {
-            is WhetherState.Error -> Unit
+            is WhetherState.Error -> {
+                Text(state.error.asString())
+            }
             WhetherState.Loading -> {
                 CircularProgressIndicator()
             }
 
             is WhetherState.Success -> {
-                WeatherLoadedScreen(state.whether)
+                WeatherScreenContent(state.whether)
             }
         }
 

@@ -25,4 +25,10 @@
 
     <string name="day_temp">day temperature</string>
     <string name="image">image</string>
+    <string name="feels_like">Feels Like</string>
+    <string name="visibility">Visibility</string>
+    <string name="uv_rays">UV Rays</string>
+    <string name="humidity">Humidity</string>
+    <string name="wind_speed">Wind Speed</string>
+    <string name="air_pressure">Air Pressure</string>
 </resources>
