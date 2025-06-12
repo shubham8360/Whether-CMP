@@ -36,7 +36,6 @@ import platform.darwin.NSObject
                 trySend(LocationState.Error(didFailWithError.localizedDescription ?: "Unknown location error"))
             }
 
-            // Correct method for iOS 14.0 and later
             override fun locationManagerDidChangeAuthorization(manager: CLLocationManager) {
                 when (manager.authorizationStatus()) {
                     kCLAuthorizationStatusAuthorizedWhenInUse, kCLAuthorizationStatusAuthorizedAlways -> {
