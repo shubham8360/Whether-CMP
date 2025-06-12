@@ -35,7 +35,7 @@ fun WeatherScreenContent(currentWhether: Whether) {
         )
         headerFormatterTime(
             modifier = Modifier.padding(start = 20.dp),
-            currentWhether.formattedDateTime
+            currentWhether.formatterTime
         )
         headerCurrentWhether(
             modifier = Modifier.fillMaxWidth()
