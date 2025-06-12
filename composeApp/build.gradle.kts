@@ -84,6 +84,8 @@ kotlin {
             implementation(libs.bundles.ktor)
             implementation(libs.bundles.coil)
             implementation(libs.kotlinx.coroutines.test)
+
+
         }
         dependencies {
             ksp(libs.androidx.room.compiler)

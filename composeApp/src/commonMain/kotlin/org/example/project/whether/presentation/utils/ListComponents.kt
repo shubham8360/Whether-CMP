@@ -6,8 +6,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyListScope
@@ -28,7 +26,6 @@ import androidx.compose.ui.unit.sp
 import org.example.project.whether.domain.models.Current
 import org.example.project.whether.domain.models.CurrentUnits
 import org.example.project.whether.domain.models.Whether
-import org.example.project.whether.presentation.ui.textColor
 import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
@@ -49,7 +46,7 @@ fun LazyListScope.headerDateTime(modifier: Modifier = Modifier, formatterDateTim
         Text(
             text = formatterDateTime,
             modifier = modifier,
-            style = TextStyle(fontWeight = FontWeight.Bold, fontSize = 20.sp, color = textColor)
+            style = TextStyle(fontWeight = FontWeight.Bold, fontSize = 20.sp)
         )
     }
 }
@@ -59,7 +56,7 @@ fun LazyListScope.headerFormatterTime(modifier: Modifier = Modifier, time: Strin
         Text(
             text = time,
             modifier = modifier,
-            style = TextStyle(fontSize = 16.sp, color = textColor)
+            style = TextStyle(fontSize = 16.sp)
         )
     }
 }
@@ -69,7 +66,7 @@ fun LazyListScope.headerCoordinates(modifier: Modifier = Modifier, value: String
         Text(
             text = value,
             modifier = modifier,
-            style = TextStyle(fontSize = 16.sp, color = textColor)
+            style = TextStyle(fontSize = 16.sp)
         )
     }
 }
@@ -97,14 +94,14 @@ fun LazyListScope.headerCurrentWhether(modifier: Modifier = Modifier, currentWhe
                 text = currentWhether.current.temperature2m.toString(),
                 modifier = Modifier.padding(start = 10.dp),
                 style = TextStyle(
-                    fontWeight = FontWeight.Bold, fontSize = 70.sp, color = textColor
+                    fontWeight = FontWeight.Bold, fontSize = 70.sp
                 )
             )
             Text(
                 text = currentWhether.currentUnits.temperature2m,
                 modifier = Modifier.padding(top = 20.dp),
                 style = TextStyle(
-                    fontWeight = FontWeight.Bold, fontSize = 22.sp, color = textColor
+                    fontWeight = FontWeight.Bold, fontSize = 22.sp
                 )
             )
             Text(
@@ -113,7 +110,7 @@ fun LazyListScope.headerCurrentWhether(modifier: Modifier = Modifier, currentWhe
                     .padding(start = 20.dp)
                     .align(Alignment.CenterVertically),
                 style = TextStyle(
-                    fontWeight = FontWeight.Bold, fontSize = 25.sp, color = textColor,
+                    fontWeight = FontWeight.Bold, fontSize = 25.sp,
                 )
             )
         }
@@ -210,7 +207,6 @@ fun ForeCastItem(
                         textAlign = TextAlign.Start,
                         fontWeight = FontWeight.Medium,
                         fontSize = 16.sp,
-                        color = textColor
                     ),
                     modifier = Modifier
                         .weight(1f)
@@ -233,12 +229,12 @@ fun ForeCastItem(
                 ) {
                     Text(
                         text = maxTemp.toString(),
-                        style = TextStyle(fontSize = 14.sp, color = textColor),
+                        style = TextStyle(fontSize = 14.sp),
                     )
 
                     Text(
                         text = minTemp.toString(),
-                        style = TextStyle(fontSize = 14.sp, color = textColor),
+                        style = TextStyle(fontSize = 14.sp),
                         modifier = Modifier.padding(start = 20.dp) // Added some padding for separation
                     )
                 }
@@ -274,7 +270,7 @@ fun DailyItem(icDay: DrawableResource, value: String, units: String, stringText:
                     append(" ")
                     append(units)
                 },
-                style = TextStyle(fontSize = 16.sp, color = textColor),
+                style = TextStyle(fontSize = 16.sp),
                 modifier = Modifier
                     .align(Alignment.CenterHorizontally)
                     .padding(bottom = 5.dp)
@@ -282,7 +278,7 @@ fun DailyItem(icDay: DrawableResource, value: String, units: String, stringText:
 
             Text(
                 text = stringText,
-                style = TextStyle(fontSize = 14.sp, color = textColor),
+                style = TextStyle(fontSize = 14.sp),
                 modifier = Modifier.align(Alignment.CenterHorizontally)
             )
         }

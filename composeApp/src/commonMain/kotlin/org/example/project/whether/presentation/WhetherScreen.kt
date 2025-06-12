@@ -14,7 +14,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import org.example.project.core.presentation.UiText
-import org.example.project.whether.presentation.ui.textColor
 import org.example.project.whether.presentation.utils.WeatherScreenContent
 import org.jetbrains.compose.resources.getString
 import org.koin.compose.viewmodel.koinViewModel
