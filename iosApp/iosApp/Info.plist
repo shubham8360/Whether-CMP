@@ -5,7 +5,9 @@
 	<key>CADisableMinimumFrameDurationOnPhone</key>
 	<true/>
 	<!--    For location permission-->
-    <key>NSLocationWhenInUseUsageDescription</key>
-    <string>Allow $(PRODUCT_NAME) to determine your location</string>
+  <key>NSLocationWhenInUseUsageDescription</key>
+   <string>This app need your location to provide best feature based on location</string>
+   <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+   <string>This app need your location to provide best feature based on location</string>
 </dict>
 </plist>

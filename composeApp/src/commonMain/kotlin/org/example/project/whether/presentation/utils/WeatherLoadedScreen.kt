@@ -69,6 +69,7 @@ fun WeatherScreenContent(currentWhether: Whether) {
                 modifier = Modifier.padding(start = 20.dp),
                 style = TextStyle(fontSize = 16.sp, color = textColor)
             )
+
         }
         item {
             Row(
@@ -114,6 +115,9 @@ fun WeatherScreenContent(currentWhether: Whether) {
                     )
                 )
             }
+        }
+        item {
+            Text(modifier = Modifier.padding(vertical = 4.dp), text =currentWhether.latLongString)
         }
         item {   Row(
             modifier = Modifier

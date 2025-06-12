@@ -54,4 +54,12 @@ data class Whether(
     val formatterTime: String = runCatching {
         parsedDate.format(timeFormatter)
     }.getOrNull() ?: ""
-)
+){
+    val latLongString=buildString {
+        append("(")
+        append(latitude)
+        append("/")
+        append(longitude)
+        append(")")
+    }
+}

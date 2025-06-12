@@ -5,4 +5,4 @@ import org.example.project.di.initKoin
 
 fun MainViewController() = ComposeUIViewController(configure = {
     initKoin()
-}) { App() }
+}) { App(canSubscribeForLocation = true) }

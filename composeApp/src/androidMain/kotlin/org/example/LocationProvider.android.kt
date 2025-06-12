@@ -29,10 +29,9 @@ import org.example.utils.PermissionUtils.isGpsEnabled
 import java.util.concurrent.Executors
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
-import kotlin.time.Duration.Companion.minutes
 import kotlin.time.Duration.Companion.seconds
 
-class LocationProviderImpl(private val context: Context):LocationProvider {
+class FusedLocationProvider(private val context: Context):LocationProvider {
     companion object {
         private const val TAG = "FusedLocationManager"
         private val INTERVALS =  30.seconds
