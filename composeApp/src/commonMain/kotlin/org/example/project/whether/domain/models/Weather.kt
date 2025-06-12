@@ -4,17 +4,13 @@ import kotlinx.datetime.Clock
 import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.format
-import kotlinx.datetime.format.DayOfWeekNames
-import kotlinx.datetime.format.MonthNames
-import kotlinx.datetime.format.Padding
-import kotlinx.datetime.format.char
 import kotlinx.datetime.toInstant
 import kotlinx.datetime.toLocalDateTime
 import org.example.project.whether.domain.formatter.WhetherFormatter.dateMonthFormatter
 import org.example.project.whether.domain.formatter.WhetherFormatter.timeFormatter
 
 
-data class Whether(
+data class Weather(
     val id: Long,
     val current: Current,
     val currentUnits: CurrentUnits,

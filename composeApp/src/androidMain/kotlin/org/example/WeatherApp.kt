@@ -5,12 +5,12 @@ import org.example.project.di.initKoin
 import org.koin.android.ext.koin.androidContext
 
 
-class WhetherApp: Application() {
+class WeatherApp: Application() {
 
     override fun onCreate() {
         super.onCreate()
         initKoin {
-            androidContext(this@WhetherApp)
+            androidContext(this@WeatherApp)
         }
     }
 }

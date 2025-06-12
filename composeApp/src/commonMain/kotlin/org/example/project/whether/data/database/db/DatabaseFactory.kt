@@ -5,5 +5,5 @@ package org.example.project.whether.data.database.db
 import androidx.room.RoomDatabase
 
 public expect class DatabaseFactory {
-    fun create(): RoomDatabase.Builder<WhetherDb>
+    fun create(): RoomDatabase.Builder<WeatherDb>
 }

@@ -11,9 +11,9 @@ import platform.Foundation.NSFileManager
 import platform.Foundation.NSUserDomainMask
 
 actual class DatabaseFactory {
-    actual fun create(): RoomDatabase.Builder<WhetherDb> {
-        val dbFile = documentDirectory() + "/${WhetherDb.DB_NAME}"
-        return Room.databaseBuilder<WhetherDb>(
+    actual fun create(): RoomDatabase.Builder<WeatherDb> {
+        val dbFile = documentDirectory() + "/${WeatherDb.DB_NAME}"
+        return Room.databaseBuilder<WeatherDb>(
             name = dbFile
         )
     }

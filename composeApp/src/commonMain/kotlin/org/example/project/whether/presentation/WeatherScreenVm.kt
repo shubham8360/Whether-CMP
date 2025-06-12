@@ -21,27 +21,26 @@ import org.example.project.core.domain.onSuccess
 import org.example.project.core.presentation.toUiText
 import org.example.project.whether.data.location.LocationProvider
 import org.example.project.whether.data.location.LocationState
-import org.example.project.whether.domain.WhetherRepository
-import org.example.project.whether.domain.models.Whether
+import org.example.project.whether.domain.WeatherRepository
 
-class WhetherScreenVm(
-    private val repo: WhetherRepository,
+class WeatherScreenVm(
+    private val repo: WeatherRepository,
     private val locationState: LocationProvider,
 ) : ViewModel() {
-    private val _whetherState: MutableStateFlow<WhetherState> =
-        MutableStateFlow(WhetherState.Loading)
+    private val _whetherState: MutableStateFlow<WeatherState> =
+        MutableStateFlow(WeatherState.Loading)
 
-    val whetherState: StateFlow<WhetherState>  get() = _whetherState.onStart {
+    val whetherState: StateFlow<WeatherState>  get() = _whetherState.onStart {
         fetchWhetherUpdate(localCoordinates)
         observeCachedWhetherUpdates()
-    }.stateIn(viewModelScope, WhileSubscribed(5000), WhetherState.Loading)
+    }.stateIn(viewModelScope, WhileSubscribed(5000), WeatherState.Loading)
 
-    private val _remoteWhetherState: MutableStateFlow<WhetherState> =
-        MutableStateFlow(WhetherState.Loading)
-    val remoteWhetherState: StateFlow<WhetherState>  get()= _remoteWhetherState.stateIn(
+    private val _remoteWhetherState: MutableStateFlow<WeatherState> =
+        MutableStateFlow(WeatherState.Loading)
+    val remoteWhetherState: StateFlow<WeatherState>  get()= _remoteWhetherState.stateIn(
         viewModelScope,
         WhileSubscribed(5000),
-        WhetherState.Loading
+        WeatherState.Loading
     )
 
     companion object {
@@ -70,7 +69,7 @@ class WhetherScreenVm(
         repo.fetchCachedWhetherUpdates().onEach { cachedState ->
             cachedState?.let { state ->
                 println("The new cached whether has id : ${state.id}")
-                _whetherState.update { WhetherState.Success(state) }
+                _whetherState.update { WeatherState.Success(state) }
             }
         }.launchIn(viewModelScope)
     }
@@ -91,16 +90,16 @@ class WhetherScreenVm(
             )
             repo.fetchWhetherUpdates(map).onSuccess { newState ->
                 fetchedForPrimeMeridian=true
-                _whetherState.update { WhetherState.Success(newState) }
+                _whetherState.update { WeatherState.Success(newState) }
             }.onError { remoteError: DataError.Remote ->
                 _whetherState.update {
-                    if (it is WhetherState.Loading){
-                        WhetherState.Error(error = remoteError.toUiText())
+                    if (it is WeatherState.Loading){
+                        WeatherState.Error(error = remoteError.toUiText())
                     }else{
                         it
                     }
                 }
-                _remoteWhetherState.update { WhetherState.Error(remoteError.toUiText()) }
+                _remoteWhetherState.update { WeatherState.Error(remoteError.toUiText()) }
                 println("$TAG something went wrong ${remoteError.toUiText()}")
             }
         }

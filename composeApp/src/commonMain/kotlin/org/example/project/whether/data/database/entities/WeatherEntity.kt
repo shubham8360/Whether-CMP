@@ -5,7 +5,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity()
-data class WhetherEntity(
+data class WeatherEntity(
     @PrimaryKey(autoGenerate = true) val id: Long=0,
     @Embedded
     val current: CurrentEntity,

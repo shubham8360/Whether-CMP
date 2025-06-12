@@ -12,13 +12,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import org.example.project.whether.domain.models.Whether
-import org.example.project.whether.presentation.preview.previewWhether
+import org.example.project.whether.domain.models.Weather
+import org.example.project.whether.presentation.preview.previewWeather
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 
 @Composable
-fun WeatherScreenContent(currentWhether: Whether) {
+fun WeatherScreenContent(currentWeather: Weather) {
     val state = rememberLazyListState()
     LazyColumn(
         modifier = Modifier
@@ -31,42 +31,42 @@ fun WeatherScreenContent(currentWhether: Whether) {
 
         headerDateTime(
             modifier = Modifier.padding(start = 20.dp),
-            formatterDateTime = currentWhether.formattedDateTime
+            formatterDateTime = currentWeather.formattedDateTime
         )
         headerFormatterTime(
             modifier = Modifier.padding(start = 20.dp),
-            currentWhether.formatterTime
+            currentWeather.formatterTime
         )
         headerCurrentWhether(
             modifier = Modifier.fillMaxWidth()
-                .padding(10.dp), currentWhether
+                .padding(10.dp), currentWeather
         )
 
         headerCoordinates(
             modifier = Modifier.padding(vertical = 4.dp),
-            value = currentWhether.latLongString
+            value = currentWeather.latLongString
         )
 
         midCurrentWhetherFirst(
             Modifier.fillMaxWidth().height(120.dp),
-            currentWhether.current,
-            currentWhether.currentUnits
+            currentWeather.current,
+            currentWeather.currentUnits
         )
         midCurrentWhetherSecond(
             Modifier.fillMaxWidth().height(120.dp),
-            currentWhether.current,
-            currentWhether.currentUnits
+            currentWeather.current,
+            currentWeather.currentUnits
         )
 
-        itemsIndexed(items = currentWhether.daily.time) { position, time ->
+        itemsIndexed(items = currentWeather.daily.time) { position, time ->
             ForeCastItem(
                 modifier = Modifier
                     .height(60.dp)
                     .fillMaxWidth(),
                 time = time.formattedTime,
-                weatherCode = currentWhether.daily.weatherCode[position],
-                maxTemp = currentWhether.daily.temperature2mMax[position],
-                minTemp = currentWhether.daily.temperature2mMin[position]
+                weatherCode = currentWeather.daily.weatherCode[position],
+                maxTemp = currentWeather.daily.temperature2mMax[position],
+                minTemp = currentWeather.daily.temperature2mMin[position]
             )
         }
     }
@@ -77,6 +77,6 @@ fun WeatherScreenContent(currentWhether: Whether) {
 @Composable
 private fun PreviewWhetherScreen() {
     MaterialTheme {
-        WeatherScreenContent(currentWhether = previewWhether)
+        WeatherScreenContent(currentWeather = previewWeather)
     }
 }

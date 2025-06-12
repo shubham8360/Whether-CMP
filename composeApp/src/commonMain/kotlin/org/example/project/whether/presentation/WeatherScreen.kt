@@ -19,10 +19,10 @@ import org.jetbrains.compose.resources.getString
 import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
-fun WhetherScreenRoot(
+fun WeatherScreenRoot(
     modifier: Modifier = Modifier, snackBarHostState: SnackbarHostState,
     canSubscribeForLocation: Boolean,
-    viewModel: WhetherScreenVm = koinViewModel()
+    viewModel: WeatherScreenVm = koinViewModel()
 ) {
     if (canSubscribeForLocation) {
         viewModel.locationUpdates.collectAsStateWithLifecycle()
@@ -33,34 +33,34 @@ fun WhetherScreenRoot(
     val remoteState = viewModel.remoteWhetherState.collectAsState()
 
     LaunchedEffect(remoteState.value) {
-        if (remoteState.value is WhetherState.Error) {
-            val uiText = (remoteState.value as WhetherState.Error).error
+        if (remoteState.value is WeatherState.Error) {
+            val uiText = (remoteState.value as WeatherState.Error).error
             when(uiText){
                 is UiText.DynamicString -> snackBarHostState.showSnackbar(uiText.value)
                 is UiText.StringResourceId -> snackBarHostState.showSnackbar(getString(uiText.id))
             }
         }
     }
-    WhetherScreen(modifier = modifier, state = state.value)
+    WeatherScreen(modifier = modifier, state = state.value)
 }
 
 
 @Composable
-private fun WhetherScreen(modifier: Modifier = Modifier, state: WhetherState) {
+private fun WeatherScreen(modifier: Modifier = Modifier, state: WeatherState) {
     Column(
         modifier = modifier.fillMaxSize(), horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
         when (state) {
-            is WhetherState.Error -> {
+            is WeatherState.Error -> {
                 Text(state.error.asString(), textAlign = TextAlign.Center)
             }
 
-            WhetherState.Loading -> {
+            WeatherState.Loading -> {
                 CircularProgressIndicator()
             }
 
-            is WhetherState.Success -> {
+            is WeatherState.Success -> {
                 WeatherScreenContent(state.whether)
             }
         }

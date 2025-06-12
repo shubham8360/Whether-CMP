@@ -4,8 +4,8 @@ package org.example.project.whether.data.database.db
 
 import androidx.room.RoomDatabaseConstructor
 
-expect object WhetherDatabaseConstructor: RoomDatabaseConstructor<WhetherDb> {
+expect object WeatherDatabaseConstructor: RoomDatabaseConstructor<WeatherDb> {
 
-    override fun initialize(): WhetherDb
+    override fun initialize(): WeatherDb
 
 }

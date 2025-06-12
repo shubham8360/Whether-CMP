@@ -11,7 +11,7 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import com.example.compose.WeatherTheme
-import org.example.project.whether.presentation.WhetherScreenRoot
+import org.example.project.whether.presentation.WeatherScreenRoot
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
@@ -25,9 +25,9 @@ fun App(canSubscribeForLocation: Boolean = false) {
     val snackBarHostState = remember { SnackbarHostState() }
     WeatherTheme {
         Scaffold(modifier = Modifier, snackbarHost = { SnackbarHost(snackBarHostState) }, topBar = {
-            WhetherAppBar()
+            WeatherAppBar()
         }) { innerPadding ->
-            WhetherScreenRoot(
+            WeatherScreenRoot(
                 modifier = Modifier.fillMaxSize().padding(innerPadding),
                 snackBarHostState,
                 canSubscribeForLocation
@@ -38,7 +38,7 @@ fun App(canSubscribeForLocation: Boolean = false) {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun WhetherAppBar(modifier: Modifier = Modifier) {
+fun WeatherAppBar(modifier: Modifier = Modifier) {
     TopAppBar(modifier = modifier, title = {
         Text(text = stringResource(Res.string.app_name))
     })

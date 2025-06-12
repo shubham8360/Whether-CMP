@@ -2,17 +2,17 @@ package org.example.project.whether.data.mapper
 
 import org.example.project.whether.data.database.entities.CurrentEntity
 import org.example.project.whether.data.database.entities.DailyEntity
-import org.example.project.whether.data.database.entities.WhetherEntity
+import org.example.project.whether.data.database.entities.WeatherEntity
 import org.example.project.whether.domain.models.Current
 import org.example.project.whether.domain.models.CurrentUnits
 import org.example.project.whether.domain.models.Daily
 import org.example.project.whether.domain.models.DailyUnits
 import org.example.project.whether.domain.models.Time
-import org.example.project.whether.domain.models.Whether
+import org.example.project.whether.domain.models.Weather
 
 
-fun WhetherEntity.toModel(): Whether {
-    return Whether(
+fun WeatherEntity.toModel(): Weather {
+    return Weather(
         id,
         current.toModel(),
         currentUnits.toModel(),

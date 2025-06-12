@@ -9,9 +9,9 @@ import androidx.room.RoomDatabase
 actual class DatabaseFactory(
     private val context: Context
 ) {
-    actual fun create(): RoomDatabase.Builder<WhetherDb> {
+    actual fun create(): RoomDatabase.Builder<WeatherDb> {
         val appContext = context.applicationContext
-        val dbFile = appContext.getDatabasePath(WhetherDb.DB_NAME)
+        val dbFile = appContext.getDatabasePath(WeatherDb.DB_NAME)
 
         return Room.databaseBuilder(
             context = appContext,

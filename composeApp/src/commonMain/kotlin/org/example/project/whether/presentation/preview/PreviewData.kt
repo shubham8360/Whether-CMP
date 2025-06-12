@@ -5,7 +5,7 @@ import org.example.project.whether.domain.models.CurrentUnits
 import org.example.project.whether.domain.models.Daily
 import org.example.project.whether.domain.models.DailyUnits
 import org.example.project.whether.domain.models.Time
-import org.example.project.whether.domain.models.Whether
+import org.example.project.whether.domain.models.Weather
 
 
 private val daily= Daily(
@@ -44,7 +44,7 @@ private val curentUnits= CurrentUnits(
     pressureMsl = "hPa",
     shortwaveRadiation = "W/m²"
 )
-val previewWhether = Whether(
+val previewWeather = Weather(
     id = 3,
     latitude = 37.4162,
     longitude = -122.0803,

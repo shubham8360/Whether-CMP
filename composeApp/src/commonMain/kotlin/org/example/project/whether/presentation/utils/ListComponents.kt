@@ -25,7 +25,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import org.example.project.whether.domain.models.Current
 import org.example.project.whether.domain.models.CurrentUnits
-import org.example.project.whether.domain.models.Whether
+import org.example.project.whether.domain.models.Weather
 import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
@@ -71,7 +71,7 @@ fun LazyListScope.headerCoordinates(modifier: Modifier = Modifier, value: String
     }
 }
 
-fun LazyListScope.headerCurrentWhether(modifier: Modifier = Modifier, currentWhether: Whether) {
+fun LazyListScope.headerCurrentWhether(modifier: Modifier = Modifier, currentWeather: Weather) {
     item {
         Row(
             modifier = modifier,
@@ -85,27 +85,27 @@ fun LazyListScope.headerCurrentWhether(modifier: Modifier = Modifier, currentWhe
                     modifier = Modifier
                         .fillMaxSize()
                         .padding(12.dp),
-                    painter = painterResource(resolveWhetherAppIcon(currentWhether.current.weatherCode)),
+                    painter = painterResource(resolveWhetherAppIcon(currentWeather.current.weatherCode)),
                     contentScale = ContentScale.Crop,
                     contentDescription = "",
                 )
             }
             Text(
-                text = currentWhether.current.temperature2m.toString(),
+                text = currentWeather.current.temperature2m.toString(),
                 modifier = Modifier.padding(start = 10.dp),
                 style = TextStyle(
                     fontWeight = FontWeight.Bold, fontSize = 70.sp
                 )
             )
             Text(
-                text = currentWhether.currentUnits.temperature2m,
+                text = currentWeather.currentUnits.temperature2m,
                 modifier = Modifier.padding(top = 20.dp),
                 style = TextStyle(
                     fontWeight = FontWeight.Bold, fontSize = 22.sp
                 )
             )
             Text(
-                text = resolveWhetherDescription(currentWhether.current.weatherCode),
+                text = resolveWhetherDescription(currentWeather.current.weatherCode),
                 modifier = Modifier
                     .padding(start = 20.dp)
                     .align(Alignment.CenterVertically),
