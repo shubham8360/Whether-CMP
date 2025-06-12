@@ -1,10 +1,3 @@
-Here's your updated `README.md` including:
-
-* Weather fetching based on current location
-* Use of **platform-specific location API**
-* Emphasis on **Clean Architecture**
-
----
 
 # 🌦️ WeatherApp
 
