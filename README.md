@@ -80,14 +80,7 @@ Sample endpoint used:
 ```
 https://api.open-meteo.com/v1/forecast?latitude=37.4220936&longitude=-122.083922&current=temperature_2m%2Crelative_humidity_2m%2Cweather_code%2Cwind_speed_10m%2Cvisibility%2Cpressure_msl%2Cis_day%2Cshortwave_radiation&daily=weather_code%2Ctemperature_2m_max%2Ctemperature_2m_min```
 
----
 
-## 📸 Screenshots
-
-<div align="center">
-  <img src="media/1.png" width="250" alt="Android Home Screen" />
-  <img src="media/2.png" width="250" alt="iOS Home Screen" />
-</div>
 
 ---
 
@@ -104,7 +97,14 @@ https://api.open-meteo.com/v1/forecast?latitude=37.4220936&longitude=-122.083922
 ```bash
 git clone https://github.com/your-username/weather-app-kmp.git
 ```
+... 
 
+## 📸 Screenshots
+
+<div style="display: flex; gap: 10px;">
+ <img src="media/1.png" width="300" alt="Home Screen" />
+<img src="media/2.png" width="300" alt="Detailed Screen" />
+</div>
 ### Android
 
 ```bash
