@@ -16,7 +16,7 @@ fun WhetherEntity.toModel(): Whether {
         id,
         current.toModel(),
         currentUnits.toModel(),
-        daily.toModel(),
+        daily.toModel(dailyUnits.temperature2mMax, dailyUnits.temperature2mMin),
         dailyUnits.toModel(),
         elevation,
         generationTimeMs,
@@ -25,7 +25,7 @@ fun WhetherEntity.toModel(): Whether {
         timezone,
         timezoneAbbreviation,
         utcOffsetSeconds,
-        )
+    )
 }
 
 fun org.example.project.whether.data.database.entities.CurrentUnitsEntity.toModel(): CurrentUnits {
@@ -62,6 +62,20 @@ fun org.example.project.whether.data.database.entities.DailyUnitsEntity.toModel(
     return DailyUnits(temperature2mMax, temperature2mMin, time, weatherCode)
 }
 
-fun DailyEntity.toModel(): Daily {
-    return Daily(temperature2mMax, temperature2mMin, time.map { Time(it) }, weatherCode)
+fun DailyEntity.toModel(maxUnit: String, minUnit: String): Daily {
+    val tempMax = temperature2mMax.map { value ->
+        buildString {
+            append(value)
+            append(" ")
+            append(maxUnit)
+        }
+    }
+    val temp2Min = temperature2mMin.map { value ->
+        buildString {
+            append(value)
+            append(" ")
+            append(minUnit)
+        }
+    }
+    return Daily(tempMax, temp2Min, time.map { Time(it) }, weatherCode)
 }

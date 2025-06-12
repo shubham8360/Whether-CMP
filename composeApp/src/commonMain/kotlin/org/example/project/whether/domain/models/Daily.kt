@@ -9,8 +9,8 @@ import org.example.project.whether.domain.formatter.WhetherFormatter.dayFormatte
 
 
 data class Daily(
-    val temperature2mMax: List<Double>,
-    val temperature2mMin: List<Double>,
+    val temperature2mMax: List<String>,
+    val temperature2mMin: List<String>,
     val time: List<Time>,
     val weatherCode: List<Int>,
 )
