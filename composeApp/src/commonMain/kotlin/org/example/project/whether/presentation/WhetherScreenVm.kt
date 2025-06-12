@@ -31,14 +31,14 @@ class WhetherScreenVm(
     private val _whetherState: MutableStateFlow<WhetherState> =
         MutableStateFlow(WhetherState.Loading)
 
-    val whetherState: StateFlow<WhetherState> = _whetherState.onStart {
+    val whetherState: StateFlow<WhetherState>  get() = _whetherState.onStart {
         fetchWhetherUpdate(localCoordinates)
         observeCachedWhetherUpdates()
     }.stateIn(viewModelScope, WhileSubscribed(5000), WhetherState.Loading)
 
     private val _remoteWhetherState: MutableStateFlow<WhetherState> =
         MutableStateFlow(WhetherState.Loading)
-    val remoteWhetherState: StateFlow<WhetherState> = _remoteWhetherState.stateIn(
+    val remoteWhetherState: StateFlow<WhetherState>  get()= _remoteWhetherState.stateIn(
         viewModelScope,
         WhileSubscribed(5000),
         WhetherState.Loading
@@ -75,11 +75,13 @@ class WhetherScreenVm(
         }.launchIn(viewModelScope)
     }
 
+    private var fetchedForPrimeMeridian = false
     fun fetchWhetherUpdate(coordinates: Coordinates) {
-        if (coordinates == localCoordinates) {
+        if (coordinates == localCoordinates && fetchedForPrimeMeridian) {
 //            with that lat long request are already in queue
             return
         }
+
         job?.cancel()
         job = viewModelScope.launch(Dispatchers.IO) {
             localCoordinates = coordinates
@@ -88,6 +90,7 @@ class WhetherScreenVm(
                 "longitude" to coordinates.longitude
             )
             repo.fetchWhetherUpdates(map).onSuccess { newState ->
+                fetchedForPrimeMeridian=true
                 _whetherState.update { WhetherState.Success(newState) }
             }.onError { remoteError: DataError.Remote ->
                 _whetherState.update {
