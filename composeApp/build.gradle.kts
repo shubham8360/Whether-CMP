@@ -107,6 +107,9 @@ android {
     namespace = "org.example.project"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
 
+    lint {
+        disable+="NullSafeMutableLiveData"
+    }
     defaultConfig {
         applicationId = "org.example.project"
         minSdk = libs.versions.android.minSdk.get().toInt()

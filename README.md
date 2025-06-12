@@ -5,7 +5,11 @@ A sleek **Weather App** built using **Kotlin Multiplatform (KMP)** and **Compose
 
 > 🚀 Targets **Android** and **iOS**, sharing most logic and UI using KMM + CMP.
 
----
+--- 
+
+###### Special Note 
+If you want to share apk, make sure tha apk must be signed with keystore, otherwise newer android won't allow 
+to install the apk , by saying unknown application id, also this repo include apk which released
 
 ## ✨ Features
 

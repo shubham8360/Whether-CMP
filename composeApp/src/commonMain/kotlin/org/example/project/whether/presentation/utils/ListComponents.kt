@@ -228,12 +228,12 @@ fun ForeCastItem(
                     horizontalArrangement = Arrangement.Center
                 ) {
                     Text(
-                        text = maxTemp.toString(),
+                        text = minTemp.toString(),
                         style = TextStyle(fontSize = 14.sp),
                     )
 
                     Text(
-                        text = minTemp.toString(),
+                        text = maxTemp.toString(),
                         style = TextStyle(fontSize = 14.sp),
                         modifier = Modifier.padding(start = 20.dp) // Added some padding for separation
                     )
