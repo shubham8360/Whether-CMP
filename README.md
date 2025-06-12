@@ -88,7 +88,7 @@ https://api.open-meteo.com/v1/forecast?latitude=37.4220936&longitude=-122.083922
 
 ### Prerequisites
 
-* Android Studio Giraffe or later
+* Android Studio Meercut or later
 * Xcode 14+ with CocoaPods installed
 * Kotlin Multiplatform Mobile plugin
 
