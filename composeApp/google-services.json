@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "589786820618",
+    "project_id": "whether-cmp",
+    "storage_bucket": "whether-cmp.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:589786820618:android:f84e46b216d0656cfc6ff3",
+        "android_client_info": {
+          "package_name": "org.example.project"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB4rB_F9UyDyecZMkOR4lmPYtNrUB5SbW0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

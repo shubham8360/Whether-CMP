@@ -15,6 +15,7 @@ import org.example.project.whether.domain.formatter.WhetherFormatter.timeFormatt
 
 
 data class Whether(
+    val id: Long,
     val current: Current,
     val currentUnits: CurrentUnits,
     val daily: Daily,

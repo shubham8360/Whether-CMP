@@ -1,10 +1,8 @@
 package org.example.project.whether.data.mapper
 
-import org.example.project.whether.data.dto.CurrentDto
-import org.example.project.whether.data.dto.CurrentUnitsDto
-import org.example.project.whether.data.dto.DailyDto
-import org.example.project.whether.data.dto.DailyUnitsDto
-import org.example.project.whether.data.dto.WhetherDto
+import org.example.project.whether.data.database.entities.CurrentEntity
+import org.example.project.whether.data.database.entities.DailyEntity
+import org.example.project.whether.data.database.entities.WhetherEntity
 import org.example.project.whether.domain.models.Current
 import org.example.project.whether.domain.models.CurrentUnits
 import org.example.project.whether.domain.models.Daily
@@ -13,8 +11,9 @@ import org.example.project.whether.domain.models.Time
 import org.example.project.whether.domain.models.Whether
 
 
-fun WhetherDto.toModel(): Whether {
+fun WhetherEntity.toModel(): Whether {
     return Whether(
+        id,
         current.toModel(),
         currentUnits.toModel(),
         daily.toModel(),
@@ -26,11 +25,10 @@ fun WhetherDto.toModel(): Whether {
         timezone,
         timezoneAbbreviation,
         utcOffsetSeconds,
-
         )
 }
 
-fun CurrentUnitsDto.toModel(): CurrentUnits {
+fun org.example.project.whether.data.database.entities.CurrentUnitsEntity.toModel(): CurrentUnits {
     return CurrentUnits(
         interval,
         isDay,
@@ -45,7 +43,7 @@ fun CurrentUnitsDto.toModel(): CurrentUnits {
     )
 }
 
-fun CurrentDto.toModel(): Current {
+fun CurrentEntity.toModel(): Current {
     return Current(
         interval,
         isDay,
@@ -60,10 +58,10 @@ fun CurrentDto.toModel(): Current {
     )
 }
 
-fun DailyUnitsDto.toModel(): DailyUnits {
+fun org.example.project.whether.data.database.entities.DailyUnitsEntity.toModel(): DailyUnits {
     return DailyUnits(temperature2mMax, temperature2mMin, time, weatherCode)
 }
 
-fun DailyDto.toModel(): Daily {
+fun DailyEntity.toModel(): Daily {
     return Daily(temperature2mMax, temperature2mMin, time.map { Time(it) }, weatherCode)
 }
