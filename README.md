@@ -1,22 +1,129 @@
-This is a Kotlin Multiplatform project targeting Android, iOS.
+Here's your updated `README.md` including:
 
-* `/composeApp` is for code that will be shared across your Compose Multiplatform applications.
-  It contains several subfolders:
-    - `commonMain` is for code that’s common for all targets.
-    - Other folders are for Kotlin code that will be compiled for only the platform indicated in the
-      folder name.
-      For example, if you want to use Apple’s CoreCrypto for the iOS part of your Kotlin app,
-      `iosMain` would be the right folder for such calls.
+* Weather fetching based on current location
+* Use of **platform-specific location API**
+* Emphasis on **Clean Architecture**
 
-* `/iosApp` contains iOS applications. Even if you’re sharing your UI with Compose Multiplatform,
-  you need this entry point for your iOS app. This is also where you should add SwiftUI code for
-  your project.
+---
 
-Learn more
-about [Kotlin Multiplatform](https://www.jetbrains.com/help/kotlin-multiplatform-dev/get-started.html)…
+# 🌦️ WeatherApp
 
+A sleek **Weather App** built using **Kotlin Multiplatform (KMP)** and **Compose Multiplatform (CMP)**. It fetches real-time weather data from the [Open-Meteo API](https://open-meteo.com/) and displays it in a modern, user-friendly interface.
 
-[//]: # (Following open meteo curl is used to fetch info
-)
+> 🚀 Targets **Android** and **iOS**, sharing most logic and UI using KMM + CMP.
 
-https://api.open-meteo.com/v1/forecast?latitude=32.2748&longitude=75.6529&current=temperature_2m,relative_humidity_2m,weather_code,wind_speed_10m,visibility,pressure_msl,is_day&daily=weather_code,temperature_2m_max,temperature_2m_min
+---
+
+## ✨ Features
+
+* 📍 Fetch weather based on **current device location**
+* 🔍 View current weather and 7-day forecast
+* 🌐 Real-time data from **Open-Meteo API**
+* 🖼️ Unified, responsive UI with **Compose Multiplatform**
+* 💾 Offline support via **RoomDB**
+* 🧱 Follows **Clean Architecture principles**
+* 💉 Dependency Injection using **Koin**
+* 🔌 API handling with **Ktor**
+
+---
+
+## 📍 Location Support
+
+* Uses **platform-specific location APIs**:
+
+    * Android: Fused Location Provider
+    * iOS: CoreLocation
+* Retrieves latitude and longitude to fetch accurate weather data from Open-Meteo
+
+---
+
+## 🛠️ Tech Stack
+
+| Layer                | Technology / Library              |
+| -------------------- | --------------------------------- |
+| UI                   | Compose Multiplatform             |
+| Shared Logic         | Kotlin Multiplatform Mobile (KMM) |
+| Networking           | Ktor                              |
+| Dependency Injection | Koin                              |
+| Local Storage        | RoomDB (KMM abstraction)          |
+| Location Services    | Platform-specific (Android/iOS)   |
+
+---
+
+## 🧱 Architecture
+
+The app uses a **modular Clean Architecture** approach:
+
+* **Domain Layer**
+
+    * Business logic (UseCases, Models, Interfaces)
+* **Data Layer**
+
+    * Ktor for network calls
+    * RoomDB for offline caching
+    * Mappers to convert between DTOs and domain models
+* **Presentation Layer**
+
+    * Compose Multiplatform UI
+    * ViewModels for state handling
+    * Platform-specific code for permissions, location, etc.
+
+---
+
+## 📦 Modules Overview
+
+* `:shared` — Shared logic (domain, data, use-cases)
+* `:androidApp` — Android-specific UI, permissions, and location handling
+* `:iosApp` — iOS-specific Swift interop and CoreLocation integration
+
+---
+
+## 🌐 API Used
+
+* [Open-Meteo API](https://open-meteo.com/en/docs)
+
+Sample endpoint used:
+
+```
+https://api.open-meteo.com/v1/forecast?latitude=37.4220936&longitude=-122.083922&current=temperature_2m%2Crelative_humidity_2m%2Cweather_code%2Cwind_speed_10m%2Cvisibility%2Cpressure_msl%2Cis_day%2Cshortwave_radiation&daily=weather_code%2Ctemperature_2m_max%2Ctemperature_2m_min```
+
+---
+
+## 📸 Screenshots
+
+<div align="center">
+  <img src="media/1.png" width="250" alt="Android Home Screen" />
+  <img src="media/2.png" width="250" alt="iOS Home Screen" />
+</div>
+
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+* Android Studio Giraffe or later
+* Xcode 14+ with CocoaPods installed
+* Kotlin Multiplatform Mobile plugin
+
+### Clone the Repo
+
+```bash
+git clone https://github.com/your-username/weather-app-kmp.git
+```
+
+### Android
+
+```bash
+./gradlew :androidApp:installDebug
+```
+
+### iOS
+
+Open `iosApp/iosApp.xcworkspace` in Xcode and run on a device or simulator.
+
+---
+
+## 📜 License
+
+MIT License. See the `LICENSE` file for details.
