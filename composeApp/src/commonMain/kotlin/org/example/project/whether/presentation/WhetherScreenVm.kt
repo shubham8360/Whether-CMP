@@ -36,6 +36,14 @@ class WhetherScreenVm(
         observeCachedWhetherUpdates()
     }.stateIn(viewModelScope, WhileSubscribed(5000), WhetherState.Loading)
 
+    private val _remoteWhetherState: MutableStateFlow<WhetherState> =
+        MutableStateFlow(WhetherState.Loading)
+    val remoteWhetherState: StateFlow<WhetherState> = _remoteWhetherState.stateIn(
+        viewModelScope,
+        WhileSubscribed(5000),
+        WhetherState.Loading
+    )
+
     companion object {
         private const val TAG = "WhetherScreenVm"
     }
@@ -89,6 +97,7 @@ class WhetherScreenVm(
                         it
                     }
                 }
+                _remoteWhetherState.update { WhetherState.Error(remoteError.toUiText()) }
                 println("$TAG something went wrong ${remoteError.toUiText()}")
             }
         }

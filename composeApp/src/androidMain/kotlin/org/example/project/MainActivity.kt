@@ -27,16 +27,6 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         super.onCreate(savedInstanceState)
         setContent {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                val notificationPermissionState = rememberPermissionState(
-                    android.Manifest.permission.POST_NOTIFICATIONS
-                )
-                LaunchedEffect(notificationPermissionState.status) {
-                    if (!notificationPermissionState.status.isGranted) {
-                        notificationPermissionState.launchPermissionRequest()
-                    }
-                }
-            }
             val locationPermissionState =
                 rememberMultiplePermissionsState(locationPermission.asList())
             LaunchedEffect(locationPermissionState.allPermissionsGranted) {

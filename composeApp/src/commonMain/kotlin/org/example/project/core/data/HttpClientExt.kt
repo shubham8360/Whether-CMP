@@ -9,7 +9,7 @@ import io.ktor.client.statement.HttpResponse
 import io.ktor.util.network.UnresolvedAddressException
 import kotlinx.coroutines.ensureActive
 import kotlin.coroutines.coroutineContext
-
+const val unknownHostExceptionMessage = "Unable to resolve host"
 suspend inline fun <reified T> safeCall(
     execute: () -> HttpResponse
 ): Result<T, DataError.Remote> {
@@ -19,9 +19,11 @@ suspend inline fun <reified T> safeCall(
         return Result.Error(DataError.Remote.REQUEST_TIMEOUT)
     } catch (_: UnresolvedAddressException) {
         return Result.Error(DataError.Remote.NO_INTERNET)
-    } catch (_: Exception) {
+    } catch (exception: Exception) {
         coroutineContext.ensureActive()
-        return Result.Error(DataError.Remote.UNKNOWN)
+        val error=if (exception.message?.contains(unknownHostExceptionMessage)==true) DataError.Remote.NO_INTERNET else DataError.Remote.UNKNOWN
+        println(exception)
+        return Result.Error(error)
     }
 
     return responseToResult(response)
