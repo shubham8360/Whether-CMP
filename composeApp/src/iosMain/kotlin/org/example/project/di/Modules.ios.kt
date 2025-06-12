@@ -1,6 +1,6 @@
 package org.example.project.di
 
-import com.yourproject.IosLocationProviderImpl
+import org.example.project.location.IosLocationProviderImpl
 import io.ktor.client.engine.HttpClientEngine
 import io.ktor.client.engine.darwin.Darwin
 import org.example.project.whether.data.location.LocationProvider

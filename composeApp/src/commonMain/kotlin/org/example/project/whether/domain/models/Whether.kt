@@ -10,23 +10,9 @@ import kotlinx.datetime.format.Padding
 import kotlinx.datetime.format.char
 import kotlinx.datetime.toInstant
 import kotlinx.datetime.toLocalDateTime
+import org.example.project.whether.domain.formatter.WhetherFormatter.dateMonthFormatter
+import org.example.project.whether.domain.formatter.WhetherFormatter.timeFormatter
 
-/**
- * formatter for the date and month eg: Wednesday, June*/
-val dateMonthFormatter = LocalDateTime.Format {
-    dayOfWeek(DayOfWeekNames.ENGLISH_FULL)
-    char(',')
-    char(' ')
-    monthName(MonthNames.ENGLISH_FULL)
-}
-
-val timeFormatter = LocalDateTime.Format {
-    amPmHour(Padding.ZERO)
-    char(':')
-    minute(padding = Padding.ZERO)
-    char(' ')
-    amPmMarker("AM", "PM")
-}
 
 data class Whether(
     val current: Current,
@@ -40,20 +26,19 @@ data class Whether(
     val timezone: String,
     val timezoneAbbreviation: String,
     val utcOffsetSeconds: Int,
-    val parsedDate: LocalDateTime = runCatching {
+    val parsedDate: LocalDateTime = safeCall(Clock.System.now().toLocalDateTime(
+        TimeZone.UTC
+    )) {
         LocalDateTime.parse(current.time).toInstant(
             TimeZone.UTC
         ).toLocalDateTime(TimeZone.currentSystemDefault())
-    }.getOrNull()
-        ?: Clock.System.now().toLocalDateTime(
-            TimeZone.UTC
-        ),
-    val formattedDateTime: String = runCatching {
+    } ,
+    val formattedDateTime: String = safeCall("") {
         parsedDate.format(dateMonthFormatter)
-    }.getOrNull() ?: "",
-    val formatterTime: String = runCatching {
+    },
+    val formatterTime: String = safeCall("") {
         parsedDate.format(timeFormatter)
-    }.getOrNull() ?: ""
+    }
 ){
     val latLongString=buildString {
         append("(")
@@ -63,3 +48,5 @@ data class Whether(
         append(")")
     }
 }
+
+

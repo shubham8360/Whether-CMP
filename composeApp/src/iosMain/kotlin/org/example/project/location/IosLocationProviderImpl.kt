@@ -1,4 +1,4 @@
-package com.yourproject
+package org.example.project.location
 
 import kotlinx.cinterop.CValue
 import kotlinx.cinterop.ExperimentalForeignApi

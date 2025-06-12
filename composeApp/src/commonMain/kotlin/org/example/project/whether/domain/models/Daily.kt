@@ -4,15 +4,9 @@ import kotlinx.datetime.Clock
 import kotlinx.datetime.LocalDate
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.format
-import kotlinx.datetime.format.DayOfWeekNames
-import kotlinx.datetime.format.FormatStringsInDatetimeFormats
 import kotlinx.datetime.toLocalDateTime
+import org.example.project.whether.domain.formatter.WhetherFormatter.dayFormatter
 
-
-@OptIn(FormatStringsInDatetimeFormats::class)
-val dayFormatter = LocalDate.Format {
-    dayOfWeek(DayOfWeekNames.ENGLISH_FULL)
-}
 
 data class Daily(
     val temperature2mMax: List<Double>,
@@ -23,10 +17,10 @@ data class Daily(
 
 data class Time(
     val time: String,
-    val parsedDateTime: LocalDate = runCatching {
+    val parsedDateTime: LocalDate = safeCall(Clock.System.now().toLocalDateTime(TimeZone.UTC).date) {
         LocalDate.parse(time)
-    }.getOrNull() ?: Clock.System.now().toLocalDateTime(TimeZone.UTC).date,
-    val formattedTime: String = runCatching {
+    } ,
+    val formattedTime: String = safeCall( time) {
         parsedDateTime.format(dayFormatter)
-    }.getOrNull() ?: time
+    }
 )
