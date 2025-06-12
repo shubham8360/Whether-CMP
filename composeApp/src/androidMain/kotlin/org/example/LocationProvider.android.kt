@@ -23,9 +23,9 @@ import kotlinx.coroutines.flow.onStart
 import org.example.project.R
 import org.example.project.whether.data.location.LocationProvider
 import org.example.project.whether.data.location.LocationState
-import org.example.utils.PermissionUtils
-import org.example.utils.PermissionUtils.hasPermissions
-import org.example.utils.PermissionUtils.isGpsEnabled
+import org.example.project.utils.PermissionUtils
+import org.example.project.utils.PermissionUtils.hasPermissions
+import org.example.project.utils.PermissionUtils.isGpsEnabled
 import java.util.concurrent.Executors
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
