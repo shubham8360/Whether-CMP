@@ -18,10 +18,10 @@ import org.jetbrains.compose.ui.tooling.preview.Preview
 
 
 @Composable
-fun WeatherScreenContent(currentWeather: Weather) {
+fun WeatherScreenContent(modifier: Modifier= Modifier,currentWeather: Weather) {
     val state = rememberLazyListState()
     LazyColumn(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
             .padding(start = 20.dp, end = 20.dp),
         verticalArrangement = Arrangement.spacedBy(10.dp),

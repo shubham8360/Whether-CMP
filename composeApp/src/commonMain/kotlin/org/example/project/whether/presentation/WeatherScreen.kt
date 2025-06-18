@@ -11,12 +11,21 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextAlign
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import org.example.project.core.presentation.UiText
+import org.example.project.whether.presentation.utils.TestUtils
 import org.example.project.whether.presentation.utils.WeatherScreenContent
 import org.jetbrains.compose.resources.getString
+import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.viewmodel.koinViewModel
+import whethercmp.composeapp.generated.resources.Res
+import whethercmp.composeapp.generated.resources.content_description_error
+import whethercmp.composeapp.generated.resources.error_unknown
+import whethercmp.composeapp.generated.resources.loading
+import whethercmp.composeapp.generated.resources.success
 
 @Composable
 fun WeatherScreenRoot(
@@ -46,22 +55,29 @@ fun WeatherScreenRoot(
 
 
 @Composable
-private fun WeatherScreen(modifier: Modifier = Modifier, state: WeatherState) {
+ fun WeatherScreen(modifier: Modifier = Modifier, state: WeatherState) {
+
     Column(
         modifier = modifier.fillMaxSize(), horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
         when (state) {
             is WeatherState.Error -> {
-                Text(state.error.asString(), textAlign = TextAlign.Center)
+                Text(modifier = Modifier.semantics {
+                    contentDescription= TestUtils.errorContentDesc
+                }, text = state.error.asString(), textAlign = TextAlign.Center)
             }
 
             WeatherState.Loading -> {
-                CircularProgressIndicator()
+                CircularProgressIndicator(modifier = Modifier.semantics {
+                    contentDescription= TestUtils.loadingContentDesc
+                })
             }
 
             is WeatherState.Success -> {
-                WeatherScreenContent(state.whether)
+                WeatherScreenContent(modifier= Modifier.semantics {
+                    contentDescription= TestUtils.successContentDesc
+                },state.whether)
             }
         }
 

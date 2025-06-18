@@ -31,4 +31,7 @@
     <string name="humidity">Humidity</string>
     <string name="wind_speed">Wind Speed</string>
     <string name="air_pressure">Air Pressure</string>
+    <string name="content_description_error">Error</string>
+    <string name="loading">Loading</string>
+    <string name="success">Success</string>
 </resources>
