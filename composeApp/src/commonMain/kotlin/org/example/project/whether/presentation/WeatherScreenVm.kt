@@ -88,8 +88,8 @@ class WeatherScreenVm(
                 "latitude" to coordinates.latitude,
                 "longitude" to coordinates.longitude
             )
+            fetchedForPrimeMeridian=true
             repo.fetchWhetherUpdates(map).onSuccess { newState ->
-                fetchedForPrimeMeridian=true
                 _whetherState.update { WeatherState.Success(newState) }
             }.onError { remoteError: DataError.Remote ->
                 _whetherState.update {

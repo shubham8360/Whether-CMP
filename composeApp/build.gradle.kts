@@ -25,6 +25,7 @@ kotlin {
         }
     }
 
+
     
     listOf(
         iosX64(),
@@ -42,6 +43,7 @@ kotlin {
     }
 
     sourceSets {
+
         
         androidMain.dependencies {
             implementation(compose.preview)
@@ -85,7 +87,6 @@ kotlin {
             implementation(libs.bundles.coil)
             implementation(libs.kotlinx.coroutines.test)
 
-
         }
         dependencies {
             ksp(libs.androidx.room.compiler)
@@ -106,6 +107,7 @@ kotlin {
 android {
     namespace = "org.example.project"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
+    testOptions.unitTests.isIncludeAndroidResources = true
 
     lint {
         disable+="NullSafeMutableLiveData"

@@ -19,13 +19,7 @@ import org.example.project.core.presentation.UiText
 import org.example.project.whether.presentation.utils.TestUtils
 import org.example.project.whether.presentation.utils.WeatherScreenContent
 import org.jetbrains.compose.resources.getString
-import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.viewmodel.koinViewModel
-import whethercmp.composeapp.generated.resources.Res
-import whethercmp.composeapp.generated.resources.content_description_error
-import whethercmp.composeapp.generated.resources.error_unknown
-import whethercmp.composeapp.generated.resources.loading
-import whethercmp.composeapp.generated.resources.success
 
 @Composable
 fun WeatherScreenRoot(
@@ -45,7 +39,10 @@ fun WeatherScreenRoot(
         if (remoteState.value is WeatherState.Error) {
             val uiText = (remoteState.value as WeatherState.Error).error
             when(uiText){
-                is UiText.DynamicString -> snackBarHostState.showSnackbar(uiText.value)
+                is UiText.DynamicString -> {
+                    snackBarHostState.currentSnackbarData
+                    snackBarHostState.showSnackbar(uiText.value)
+                }
                 is UiText.StringResourceId -> snackBarHostState.showSnackbar(getString(uiText.id))
             }
         }
@@ -70,6 +67,7 @@ fun WeatherScreenRoot(
 
             WeatherState.Loading -> {
                 CircularProgressIndicator(modifier = Modifier.semantics {
+                    contentDescription= TestUtils.loadingContentDesc
                     contentDescription= TestUtils.loadingContentDesc
                 })
             }
