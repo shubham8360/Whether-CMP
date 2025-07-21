@@ -113,7 +113,7 @@ android {
         disable+="NullSafeMutableLiveData"
     }
     defaultConfig {
-        applicationId = "org.example.project"
+        applicationId = "org.project.weather.cmp"
         minSdk = libs.versions.android.minSdk.get().toInt()
         targetSdk = libs.versions.android.targetSdk.get().toInt()
         versionCode = 1
