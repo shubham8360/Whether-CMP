@@ -1,7 +1,7 @@
-package org.example.project
+package org.project.weather.cmp
 
 import androidx.compose.ui.window.ComposeUIViewController
-import org.example.project.di.initKoin
+import org.project.weather.cmp.di.initKoin
 
 fun MainViewController() = ComposeUIViewController(configure = {
     initKoin()

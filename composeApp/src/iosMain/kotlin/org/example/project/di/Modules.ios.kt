@@ -1,10 +1,10 @@
-package org.example.project.di
+package org.project.weather.cmp.di
 
-import org.example.project.location.IosLocationProviderImpl
+import org.project.weather.cmp.location.IosLocationProviderImpl
 import io.ktor.client.engine.HttpClientEngine
 import io.ktor.client.engine.darwin.Darwin
-import org.example.project.whether.data.database.db.DatabaseFactory
-import org.example.project.whether.data.location.LocationProvider
+import org.project.weather.cmp.whether.data.database.db.DatabaseFactory
+import org.project.weather.cmp.whether.data.location.LocationProvider
 import org.koin.core.module.Module
 import org.koin.dsl.module
 

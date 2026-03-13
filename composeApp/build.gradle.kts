@@ -104,27 +104,36 @@ kotlin {
 }
 
 android {
-    namespace = "org.example.project"
+    namespace = "org.project.weather.cmp"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
 
     lint {
         disable+="NullSafeMutableLiveData"
     }
     defaultConfig {
-        applicationId = "org.example.project"
+        applicationId = "org.project.weather.cmp"
         minSdk = libs.versions.android.minSdk.get().toInt()
         targetSdk = libs.versions.android.targetSdk.get().toInt()
-        versionCode = 1
-        versionName = "1.0"
+        versionCode = 2
+        versionName = "1.1"
     }
     packaging {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
+    signingConfigs {
+        create("release") {
+            storeFile = file("keystore2")
+            storePassword = "123456"
+            keyAlias = "key0"
+            keyPassword = "123456"
+        }
+    }
     buildTypes {
         getByName("release") {
             isMinifyEnabled = false
+            signingConfig = signingConfigs.getByName("release")
         }
     }
     compileOptions {

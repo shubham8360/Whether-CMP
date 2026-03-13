@@ -1,4 +1,4 @@
-package org.example.project.location
+package org.project.weather.cmp.location
 
 import kotlinx.cinterop.CValue
 import kotlinx.cinterop.ExperimentalForeignApi
@@ -6,8 +6,8 @@ import kotlinx.cinterop.useContents
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
-import org.example.project.whether.data.location.LocationProvider
-import org.example.project.whether.data.location.LocationState
+import org.project.weather.cmp.whether.data.location.LocationProvider
+import org.project.weather.cmp.whether.data.location.LocationState
 import platform.CoreLocation.*
 import platform.Foundation.NSError
 import platform.darwin.NSObject

@@ -1,7 +1,7 @@
 @file:Suppress("EXPECT_ACTUAL_CLASSIFIERS_ARE_IN_BETA_WARNING")
 @file:OptIn(ExperimentalForeignApi::class)
 
-package org.example.project.whether.data.database.db
+package org.project.weather.cmp.whether.data.database.db
 
 import androidx.room.Room
 import androidx.room.RoomDatabase

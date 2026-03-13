@@ -9,7 +9,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:589786820618:android:f84e46b216d0656cfc6ff3",
         "android_client_info": {
-          "package_name": "org.example.project"
+          "package_name": "org.project.weather.cmp"
         }
       },
       "oauth_client": [],
